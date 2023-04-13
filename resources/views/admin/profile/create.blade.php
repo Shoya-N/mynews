@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA=Compatible" content="IE=edge">
@@ -7,6 +7,6 @@
         <title>課題05</title>
     </head>
     <body>
-        <h1>htmlで記述して装飾②</h1>
+        <h1>htmlで記述して装飾</h1>
     </body>
 </html>
