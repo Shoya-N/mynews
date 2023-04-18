@@ -1,16 +1,16 @@
 {{-- layouts/profile.blade.phpを読み込む --}}
 @extends('layouts.profile')
 
-{{-- profile.blade.phpの@yield('title')に'ニュースの新規作成'を埋め込む --}}
-@section('title', 'NBAの試合結果')
+{{-- profile.blade.phpの@yield('title')に'Myプロフィール'を埋め込む --}}
+@section('title', 'Myプロフィール')
 
 {{-- profile.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
    <div class="container">
-       <div class="row">
-           <div class="col-md-8 mx-auto">
-               <h2>NBAの試合結果</h2>
-               <form action="{{ route('admin.profile.create') }}" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h2>Myプロフィール</h2>
+                <form action="{{ route('admin.profile.update') }}" method="post" enctype="multipart/form-data">
                     @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)
@@ -19,33 +19,38 @@
                         </ul>
                     @endif
                     <div class="form-group row">
-                        <label class="col-md-2">日付</label>
+                        <label class="col-md-2" for="name">氏名</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="date" value="{{ old('title') }}">
+                            <input type="text" class="form-control" name="name" value="{{ $profile_form->name }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2">チーム</label>
+                        <label class="col-md-2" for="gender">性別</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="team">
+                            <input type="text" class="form-control" name="gender" value="{{ $profile_form->gender }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2">試合内容</label>
+                        <label class="col-md-2" for="hobby">趣味</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="gender" rows="20">{{ old('body') }}</textarea>
+                            <input type="text" class="form-control" name="hobby" value="{{ $profile_form->hobby }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2">画像</label>
+                        <label class="col-md-2" for="introduction">自己紹介欄</label>
                         <div class="col-md-10">
-                            <input type="file" class="form-control-file" name="image">
+                            <textarea class="form-control" name="introduction" value="{{ $profile_form->introduction }}" rows="20">{{ $profile_form->introductin }}</textarea>
                         </div>
                     </div>
-                    @csrf
-                    <input type="submit" class="btnbtn-primary" value="更新">
+                    <div class="form-group row">
+                        <div class="col-md-10">
+                            <input type="hidden" name="id" value="{{ $profile_form->id }}">
+                            @csrf
+                            <input type="submit" class="btn btn-primary" value="更新">
+                        </div>
+                    </div>
                 </form>
-           </div>
-       </div>
-   </div>
+            </div>
+        </div>
+    </div>
 @endsection
